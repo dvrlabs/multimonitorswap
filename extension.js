@@ -294,13 +294,11 @@ class MultiMonitorSwap {
     }
 
     enable() {
-        log("Multi Monitor Swap Enabled.");
         this._settings = ExtensionUtils.getSettings('org.gnome.shell.extensions.multimonitorswap');
         this._bindShortcut();
     }
 
     disable() {
-        log("Multi Monitor Swap DISABLED.");
         this._unbindShortcut();
         this._settings = null;
     }
@@ -308,6 +306,5 @@ class MultiMonitorSwap {
 
 // eslint-disable-next-line no-unused-vars
 function init() {
-    log("Multi Monitor Swap Initalized");
     return new MultiMonitorSwap();
 }
