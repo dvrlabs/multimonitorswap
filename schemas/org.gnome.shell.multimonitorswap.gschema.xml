@@ -1,0 +1,24 @@
+<schemalist gettext-domain="gnome-shell-extensions">
+  <schema id="org.gnome.shell.extensions.multimonitorswap" path="/org/gnome/shell/extensions/multimonitorswap/">
+    <key name="swap-up" type="as">
+      <default><![CDATA[['<Super>k']]]></default>
+      <summary>Swap up</summary>
+      <description>Swap up</description>
+    </key>
+    <key name="swap-down" type="as">
+      <default><![CDATA[['<Super>j']]]></default>
+      <summary>Swap down</summary>
+      <description>Swap down</description>
+    </key>
+    <key name="swap-right" type="as">
+      <default><![CDATA[['<Super>l']]]></default>
+      <summary>Swap right</summary>
+      <description>Swap right</description>
+    </key>
+    <key name="swap-left" type="as">
+      <default><![CDATA[['<Super>h']]]></default>
+      <summary>Swap left</summary>
+      <description>Swap left</description>
+    </key>
+  </schema>
+</schemalist>

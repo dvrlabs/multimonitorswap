@@ -1,0 +1,8 @@
+{
+  "name": "Multi Monitor Swap ",
+  "description": "Swap windows between monitors.",
+  "uuid": "multimonitorswap@dvrlabs.tv",
+  "version": 1.0,
+  "shell-version": ["40", "41", "42", "43"],
+  "url": "https://github.com/dvrlabs/multimonitorswap"
+}
