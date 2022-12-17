@@ -23,7 +23,7 @@ install and enable the latest version.
 1.  Clone the repo:
 
 ```
-git clone https://github.com/dvrlabs/multimonitorswap
+git clone https://github.com/dvrlabs/multimonitorswap $HOME/.local/share/gnome-shell/extensions/multimonitorswap@dvrlabs.tv
 ```
 
 2. Restart GNOME, `ALT-F2` and run `r` to restart.
