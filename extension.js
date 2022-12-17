@@ -294,7 +294,7 @@ class MultiMonitorSwap {
     }
 
     enable() {
-        this._settings = ExtensionUtils.getSettings('org.gnome.shell.extensions.multimonitorswap');
+        this._settings = ExtensionUtils.getSettings('org.gnome.shell.extensions.multi-monitor-swap');
         this._bindShortcut();
     }
 
