@@ -14,7 +14,7 @@ function init() {}
 
 // eslint-disable-next-line no-unused-vars
 function buildPrefsWidget() {
-    const settings = ExtensionUtils.getSettings('org.gnome.shell.extensions.multimonitorswap');
+    const settings = ExtensionUtils.getSettings('org.gnome.shell.extensions.multi-monitor-swap');
 
     const prefsWidget = new Gtk.Grid({
         margin_top: 20,
