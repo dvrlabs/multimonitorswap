@@ -34,10 +34,3 @@ git clone https://github.com/dvrlabs/multimonitorswap $HOME/.local/share/gnome-s
 gnome-extensions enable multimonitorswap@dvrlabs.tv
 
 ```
-
-# Thanks to Martin!
-
-Making this was trivial thanks to the great work done by Martin on the focus changer extension.
-Please consider sponsoring him!
-https://github.com/martinhjartmyr/gnome-shell-extension-focus-changer
-
