@@ -19,45 +19,30 @@ class MultiMonitorSwap {
     }
 
     swapWindow(direction) {
-        // Acquire the active focused window as a starting point.
-        const activeWindow = this._getActiveWindow();
-        if (!activeWindow) return;
+        // Acquire required window and monitor variables to swap.
+        const { focusedWindow, 
+                currentMonitor, 
+                inertWindow,
+                nextMonitor } = this._getWindowsAndMonitors(direction);
 
-        // Reassign the directional constants to the required enum for acquring neighbor index.
-        if (direction == 'swap-up') direction = Meta.DisplayDirection.UP;
-        if (direction == 'swap-down') direction = Meta.DisplayDirection.DOWN;
-        if (direction == 'swap-right') direction = Meta.DisplayDirection.RIGHT;
-        if (direction == 'swap-left') direction = Meta.DisplayDirection.LEFT;
-
-        // Accordings to active window display & monitor,
-        // find the next monitor by given direction. 
-        // find the inactive window, on the next monitor
-        let currentMonitor = activeWindow.get_monitor();
-        let nextMonitor = global.display.get_monitor_neighbor_index(currentMonitor, direction);
-        const windows = this._getAllWindows(nextMonitor);
-        const inertWindow = windows[0]; 
+        // If either window was not found, do nothing
+        if (!focusedWindow) return;
+        if (!inertWindow) return;
 
         //Swap the windows to each others monitors. 
         inertWindow.move_to_monitor(currentMonitor); 
-        activeWindow.move_to_monitor(nextMonitor);
+        focusedWindow.move_to_monitor(nextMonitor);
 
         //Keep focus on the original monitor...
-        activeWindow.activate(global.get_current_time());
-
+        focusedWindow.activate(global.get_current_time());
     }
 
-    _getAllWindows(monitor) {
-        const workspace = global.workspace_manager.get_active_workspace();
-        const windows = workspace.list_windows();
-        return windows.filter(w => w.get_monitor() === monitor && w.is_hidden() === false);
-    }
 
-    _getActiveWindow() {
+    _getWindowsAndMonitors(direction) {
         const workspace = global.workspace_manager.get_active_workspace();
         const windows = workspace.list_windows();
 
         let focusedWindow = null;
-
         for (let window of windows) {
             if (window.has_focus()) {
                 focusedWindow = window;
@@ -65,7 +50,18 @@ class MultiMonitorSwap {
             }
         }
 
-        return focusedWindow;
+        if (direction == 'swap-up') direction = Meta.DisplayDirection.UP;
+        if (direction == 'swap-down') direction = Meta.DisplayDirection.DOWN;
+        if (direction == 'swap-right') direction = Meta.DisplayDirection.RIGHT;
+        if (direction == 'swap-left') direction = Meta.DisplayDirection.LEFT;
+
+        let inertWindow = null;
+        let currentMonitor = focusedWindow.get_monitor();
+        let nextMonitor = global.display.get_monitor_neighbor_index(currentMonitor, direction);
+        const nextWindows = windows.filter(w => w.get_monitor() === nextMonitor && w.is_hidden() === false);
+        inertWindow = nextWindows[0]; 
+
+        return {focusedWindow, currentMonitor, inertWindow, nextMonitor};
     }
 
     _bindShortcut() {
