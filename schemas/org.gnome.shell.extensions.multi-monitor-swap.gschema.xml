@@ -1,21 +1,41 @@
 <schemalist gettext-domain="gnome-shell-extensions">
   <schema id="org.gnome.shell.extensions.multi-monitor-swap" path="/org/gnome/shell/extensions/multi-monitor-swap/">
     <key name="swap-up" type="as">
-      <default><![CDATA[['<Super>k']]]></default>
+      <default><![CDATA[['<Super>K']]]></default>
       <summary>Swap up</summary>
       <description>Swap up</description>
     </key>
     <key name="swap-down" type="as">
-      <default><![CDATA[['<Super>j']]]></default>
+      <default><![CDATA[['<Super>J']]]></default>
       <summary>Swap down</summary>
       <description>Swap down</description>
     </key>
     <key name="swap-right" type="as">
-      <default><![CDATA[['<Super>l']]]></default>
+      <default><![CDATA[['<Super>L']]]></default>
       <summary>Swap right</summary>
       <description>Swap right</description>
     </key>
     <key name="swap-left" type="as">
+      <default><![CDATA[['<Super>H']]]></default>
+      <summary>Swap left</summary>
+      <description>Swap left</description>
+    </key>
+    <key name="focus-up" type="as">
+      <default><![CDATA[['<Super>k']]]></default>
+      <summary>Swap up</summary>
+      <description>Swap up</description>
+    </key>
+    <key name="focus-down" type="as">
+      <default><![CDATA[['<Super>j']]]></default>
+      <summary>Swap down</summary>
+      <description>Swap down</description>
+    </key>
+    <key name="focus-right" type="as">
+      <default><![CDATA[['<Super>l']]]></default>
+      <summary>Swap right</summary>
+      <description>Swap right</description>
+    </key>
+    <key name="focus-left" type="as">
       <default><![CDATA[['<Super>h']]]></default>
       <summary>Swap left</summary>
       <description>Swap left</description>

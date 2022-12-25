@@ -11,6 +11,22 @@ class MultiMonitorSwap {
         this._keySwapDownId = null;
         this._keySwapRightId = null;
         this._keySwapLeftId = null;
+
+        this._keyFocusUpId = null;
+        this._keyFocusDownId = null;
+        this._keyFocusRightId = null;
+        this._keyFocusLeftId = null;
+    }
+
+    focusWindow(direction) {
+        const { focusedWindow, 
+                currentMonitor, 
+                inertWindow,
+                nextMonitor } = this._getWindowsAndMonitors(direction);
+
+        if (!inertWindow) return;
+
+        inertWindow.activate(global.get_current_time());
     }
 
     swapWindow(direction) {
@@ -51,11 +67,16 @@ class MultiMonitorSwap {
     }
 
     _getEnumDir(direction){
+        // if (direction == 'swap-up') direction = Meta.DisplayDirection.UP;
+        // if (direction == 'swap-down') direction = Meta.DisplayDirection.DOWN;
+        // if (direction == 'swap-right') direction = Meta.DisplayDirection.RIGHT;
+        // if (direction == 'swap-left') direction = Meta.DisplayDirection.LEFT;
+        
         //'get_monitor_neighbor_index' expects a DisplayDirection enum.
-        if (direction == 'swap-up') direction = Meta.DisplayDirection.UP;
-        if (direction == 'swap-down') direction = Meta.DisplayDirection.DOWN;
-        if (direction == 'swap-right') direction = Meta.DisplayDirection.RIGHT;
-        if (direction == 'swap-left') direction = Meta.DisplayDirection.LEFT;
+        if (['swap-up','focus-up'].includes(direction)) direction = Meta.DisplayDirection.UP;
+        if (['swap-down','focus-down'].includes(direction)) direction = Meta.DisplayDirection.DOWN;
+        if (['swap-right','focus-right'].includes(direction)) direction = Meta.DisplayDirection.RIGHT;
+        if (['swap-left', 'focus-left'].includes(direction)) direction = Meta.DisplayDirection.LEFT;
 
         return direction
     }
@@ -94,6 +115,40 @@ class MultiMonitorSwap {
             Shell.ActionMode.ALL,
             () => this.swapWindow(this._keySwapLeftId)
         );
+
+        this._keyFocusUpId = 'focus-up';
+        this._keyFocusDownId = 'focus-down';
+        this._keyFocusRightId = 'focus-right';
+        this._keyFocusLeftId = 'focus-left';
+
+        Main.wm.addKeybinding(
+            this._keyFocusUpId,
+            this._settings,
+            Meta.KeyBindingFlags.NONE,
+            Shell.ActionMode.ALL,
+            () => this.focusWindow(this._keyFocusUpId)
+        );
+        Main.wm.addKeybinding(
+            this._keyFocusDownId,
+            this._settings,
+            Meta.KeyBindingFlags.NONE,
+            Shell.ActionMode.ALL,
+            () => this.focusWindow(this._keyFocusDownId)
+        );
+        Main.wm.addKeybinding(
+            this._keyFocusRightId,
+            this._settings,
+            Meta.KeyBindingFlags.NONE,
+            Shell.ActionMode.ALL,
+            () => this.focusWindow(this._keyFocusRightId)
+        );
+        Main.wm.addKeybinding(
+            this._keyFocusLeftId,
+            this._settings,
+            Meta.KeyBindingFlags.NONE,
+            Shell.ActionMode.ALL,
+            () => this.focusWindow(this._keyFocusLeftId)
+        );
     }
 
     _unbindShortcut() {
@@ -106,10 +161,25 @@ class MultiMonitorSwap {
         if (this._keySwapLeftId !== null)
             Main.wm.removeKeybinding(this._keySwapLeftId);
 
+        if (this._keyFocusUpId !== null)
+            Main.wm.removeKeybinding(this._keyFocusUpId);
+        if (this._keyFocusDownId !== null)
+            Main.wm.removeKeybinding(this._keyFocusDownId);
+        if (this._keyFocusRightId !== null)
+            Main.wm.removeKeybinding(this._keyFocusRightId);
+        if (this._keyFocusLeftId !== null)
+            Main.wm.removeKeybinding(this._keyFocusLeftId);
+
         this._keySwapUpId = null;
         this._keySwapDownId = null;
         this._keySwapRightId = null;
         this._keySwapLeftId = null;
+
+        this._keyFocusUpId = null;
+        this._keyFocusDownId = null;
+        this._keyFocusRightId = null;
+        this._keyFocusLeftId = null;
+
     }
 
     enable() {

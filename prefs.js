@@ -45,6 +45,11 @@ function buildPrefsWidget() {
     addKeybinding(store, settings, 'swap-left', 'Swap left');
     addKeybinding(store, settings, 'swap-right', 'Swap right');
 
+    addKeybinding(store, settings, 'focus-up', 'Focus up');
+    addKeybinding(store, settings, 'focus-down', 'Focus down');
+    addKeybinding(store, settings, 'focus-left', 'Focus left');
+    addKeybinding(store, settings, 'focus-right', 'Focus right');
+
     let treeView = new Gtk.TreeView();
     treeView.model = store;
     treeView.headers_visible = false;
