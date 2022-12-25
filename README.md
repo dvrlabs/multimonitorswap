@@ -3,10 +3,15 @@
 ## Default shortcuts:
 
 ```
-<Super>+h = Swap left
-<Super>+j = Swap down
-<Super>+k = Swap up
-<Super>+l = Swap right
+<Super><Shift>+h = Swap left
+<Super><Shift>+j = Swap down
+<Super><Shift>+k = Swap up
+<Super><Shift>+l = Swap right
+
+<Super><Shift>+h = Focus left
+<Super><Shift>+j = Focus down
+<Super><Shift>+k = Focus up
+<Super><Shift>+l = Focus right
 ```
 
 They can all be changed in the extension preferences.
