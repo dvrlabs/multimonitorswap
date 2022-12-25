@@ -8,10 +8,10 @@
 <Super><Shift>+k = Swap up
 <Super><Shift>+l = Swap right
 
-<Super><Shift>+h = Focus left
-<Super><Shift>+j = Focus down
-<Super><Shift>+k = Focus up
-<Super><Shift>+l = Focus right
+<Super>+h = Focus left
+<Super>+j = Focus down
+<Super>+k = Focus up
+<Super>+l = Focus right
 ```
 
 They can all be changed in the extension preferences.
