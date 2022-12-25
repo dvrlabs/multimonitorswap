@@ -67,11 +67,6 @@ class MultiMonitorSwap {
     }
 
     _getEnumDir(direction){
-        // if (direction == 'swap-up') direction = Meta.DisplayDirection.UP;
-        // if (direction == 'swap-down') direction = Meta.DisplayDirection.DOWN;
-        // if (direction == 'swap-right') direction = Meta.DisplayDirection.RIGHT;
-        // if (direction == 'swap-left') direction = Meta.DisplayDirection.LEFT;
-        
         //'get_monitor_neighbor_index' expects a DisplayDirection enum.
         if (['swap-up','focus-up'].includes(direction)) direction = Meta.DisplayDirection.UP;
         if (['swap-down','focus-down'].includes(direction)) direction = Meta.DisplayDirection.DOWN;
