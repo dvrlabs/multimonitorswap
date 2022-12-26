@@ -9,9 +9,12 @@
 <Super><Shift>+l = Swap right
 
 <Super>+h = Focus left
-<Super>+j = Focus down
-<Super>+k = Focus up
+<Super>+i = Focus down
+<Super>+u = Focus up
 <Super>+l = Focus right
+
+<Super>+j = Select down window stack for that monitor
+<Super>+k = Select up window stack for that monitor
 ```
 
 They can all be changed in the extension preferences.
