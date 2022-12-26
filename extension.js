@@ -49,9 +49,9 @@ class MultiMonitorSwap {
         let inertWindow = null;
 
         focusedWindow = windows.filter(w => 
-            w.has_focus() && 
-            !w.is_hidden() && 
-            w.get_wm_class() != "gjs")[0];
+            w.has_focus() === true && 
+            w.is_hidden() === false && 
+            w.get_wm_class() !== "gjs")[0];
 
         let currentMonitor = focusedWindow.get_monitor();
 
@@ -61,7 +61,7 @@ class MultiMonitorSwap {
         inertWindow = windows.filter(w => 
             w.get_monitor() === nextMonitor && 
             w.is_hidden() === false && 
-            w.get_wm_class() != "gjs")[0];
+            w.get_wm_class() !== "gjs")[0];
 
         return {focusedWindow, currentMonitor, inertWindow, nextMonitor};
     }
