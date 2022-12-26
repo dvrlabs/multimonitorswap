@@ -16,6 +16,9 @@ class MultiMonitorSwap {
         this._keyFocusDownId = null;
         this._keyFocusRightId = null;
         this._keyFocusLeftId = null;
+
+        this._keySelectUpId = null;
+        this._keySelectDownId = null;
     }
 
     focusWindow(direction) {
@@ -42,6 +45,33 @@ class MultiMonitorSwap {
         focusedWindow.move_to_monitor(nextMonitor);
     }
 
+    selectWindow(direction) {
+        const {focusedWindow, currentWindows} = this._getWindowsForCurrentMonitor();
+
+        if (!focusedWindow) return;
+        if (!currentWindows) return;
+
+        let index_adjust = null;
+        if (direction === "select-up") index_adjust = 1;
+        if (direction === "select-down") index_adjust = -1;
+
+        let numWindows = currentWindows.length; 
+
+        let lastWinIdx = numWindows - 1;
+        let firstWinIdx = 0;
+
+        const isCurrentWin = (win) => win.get_id() === focusedWindow.get_id();
+        const currWinIdx = currentWindows.findIndex(isCurrentWin)
+
+        let indexNow = currWinIdx + index_adjust;
+
+        if (indexNow > lastWinIdx) indexNow = firstWinIdx;
+        if (indexNow < firstWinIdx) indexNow = lastWinIdx;
+
+        currentWindows[indexNow].activate(global.get_current_time());
+
+    }
+
     _getWindowsAndMonitors(direction) {
         const workspace = global.workspace_manager.get_active_workspace();
         const windows = workspace.list_windows();
@@ -51,19 +81,48 @@ class MultiMonitorSwap {
         focusedWindow = windows.filter(w => 
             w.has_focus() === true && 
             w.is_hidden() === false && 
-            w.get_wm_class() !== "gjs")[0];
+            w.get_wm_class() !== "gjs")
+            [0];
 
         let currentMonitor = focusedWindow.get_monitor();
 
         let nextMonitor = global.display.get_monitor_neighbor_index(
-            currentMonitor, this._getEnumDir(direction));
+            currentMonitor, this._getEnumDir(direction)
+        );
 
-        inertWindow = windows.filter(w => 
+
+        let nextWindows = windows.filter(w => 
             w.get_monitor() === nextMonitor && 
             w.is_hidden() === false && 
-            w.get_wm_class() !== "gjs")[0];
+            w.get_wm_class() !== "gjs");
+
+        inertWindow = global.display.sort_windows_by_stacking(
+            nextWindows
+        )[nextWindows.length-1];
 
         return {focusedWindow, currentMonitor, inertWindow, nextMonitor};
+    }
+
+    _getWindowsForCurrentMonitor() {
+        const workspace = global.workspace_manager.get_active_workspace();
+        const windows = workspace.list_windows();
+        let focusedWindow = null;
+        let currentWindows = null;
+
+        focusedWindow = windows.filter(w => 
+            w.has_focus() === true && 
+            w.is_hidden() === false && 
+            w.get_wm_class() !== "gjs")
+            [0];
+
+        let currentMonitor = focusedWindow.get_monitor();
+
+        currentWindows = windows.filter(w => 
+            w.get_monitor() === currentMonitor && 
+            w.is_hidden() === false && 
+            w.get_wm_class() !== "gjs");
+
+        return {focusedWindow, currentWindows};
     }
 
     _getEnumDir(direction){
@@ -144,6 +203,25 @@ class MultiMonitorSwap {
             Shell.ActionMode.ALL,
             () => this.focusWindow(this._keyFocusLeftId)
         );
+
+
+        this._keySelectUpId = 'select-up';
+        this._keySelectDownId = 'select-down';
+
+        Main.wm.addKeybinding(
+            this._keySelectUpId,
+            this._settings,
+            Meta.KeyBindingFlags.NONE,
+            Shell.ActionMode.ALL,
+            () => this.selectWindow(this._keySelectUpId)
+        );
+        Main.wm.addKeybinding(
+            this._keySelectDownId,
+            this._settings,
+            Meta.KeyBindingFlags.NONE,
+            Shell.ActionMode.ALL,
+            () => this.selectWindow(this._keySelectDownId)
+        );
     }
 
     _unbindShortcut() {
@@ -165,6 +243,11 @@ class MultiMonitorSwap {
         if (this._keyFocusLeftId !== null)
             Main.wm.removeKeybinding(this._keyFocusLeftId);
 
+        if (this._keySelectUpId !== null)
+            Main.wm.removeKeybinding(this._keySelectUpId);
+        if (this._keySelectDownId !== null)
+            Main.wm.removeKeybinding(this._keySelectDownId);
+
         this._keySwapUpId = null;
         this._keySwapDownId = null;
         this._keySwapRightId = null;
@@ -174,6 +257,9 @@ class MultiMonitorSwap {
         this._keyFocusDownId = null;
         this._keyFocusRightId = null;
         this._keyFocusLeftId = null;
+
+        this._keySelectUpId = null;
+        this._keySelectDownId = null;
 
     }
 

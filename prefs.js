@@ -50,6 +50,9 @@ function buildPrefsWidget() {
     addKeybinding(store, settings, 'focus-left', 'Focus left');
     addKeybinding(store, settings, 'focus-right', 'Focus right');
 
+    addKeybinding(store, settings, 'select-up', 'Select up');
+    addKeybinding(store, settings, 'select-down', 'Select down');
+
     let treeView = new Gtk.TreeView();
     treeView.model = store;
     treeView.headers_visible = false;

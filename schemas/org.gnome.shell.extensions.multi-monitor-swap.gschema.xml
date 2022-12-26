@@ -21,24 +21,34 @@
       <description>Swap left</description>
     </key>
     <key name="focus-up" type="as">
-      <default><![CDATA[['<Super>k']]]></default>
-      <summary>Swap up</summary>
-      <description>Swap up</description>
+      <default><![CDATA[['<Super>u']]]></default>
+      <summary>Focus up</summary>
+      <description>Focus up</description>
     </key>
     <key name="focus-down" type="as">
-      <default><![CDATA[['<Super>j']]]></default>
-      <summary>Swap down</summary>
-      <description>Swap down</description>
+      <default><![CDATA[['<Super>i']]]></default>
+      <summary>Focus down</summary>
+      <description>Focus down</description>
     </key>
     <key name="focus-right" type="as">
       <default><![CDATA[['<Super>l']]]></default>
-      <summary>Swap right</summary>
-      <description>Swap right</description>
+      <summary>Focus right</summary>
+      <description>Focus right</description>
     </key>
     <key name="focus-left" type="as">
       <default><![CDATA[['<Super>h']]]></default>
-      <summary>Swap left</summary>
-      <description>Swap left</description>
+      <summary>Focus left</summary>
+      <description>Focus left</description>
+    </key>
+    <key name="select-up" type="as">
+      <default><![CDATA[['<Super>k']]]></default>
+      <summary>Select up</summary>
+      <description>Select up</description>
+    </key>
+    <key name="select-down" type="as">
+      <default><![CDATA[['<Super>j']]]></default>
+      <summary>Select down</summary>
+      <description>Select down</description>
     </key>
   </schema>
 </schemalist>
