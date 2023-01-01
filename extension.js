@@ -38,8 +38,15 @@ class MultiMonitorSwap {
                 inertWindow,
                 nextMonitor } = this._getWindowsAndMonitors(direction);
 
-        if (!focusedWindow) return;
-        if (!inertWindow) return;
+        if (!focusedWindow) {
+            return;
+        } 
+
+        if (!inertWindow) {
+            focusedWindow.move_to_monitor(nextMonitor);
+            focusedWindow.activate(global.get_current_time());
+            return;
+        } 
 
         inertWindow.move_to_monitor(currentMonitor); 
         focusedWindow.move_to_monitor(nextMonitor);
