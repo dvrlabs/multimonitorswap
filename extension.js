@@ -19,6 +19,8 @@ class MultiMonitorSwap {
 
         this._keySelectUpId = null;
         this._keySelectDownId = null;
+
+        this._timeOut = null;
     }
 
     focusWindow(direction) {
@@ -46,7 +48,7 @@ class MultiMonitorSwap {
 
             focusedWindow.move_to_monitor(nextMonitor);
 
-            setTimeout(function () {
+            this._timeOut = setTimeout(function () {
                 focusedWindow.activate(global.get_current_time());
             }, 66);
 
@@ -284,6 +286,7 @@ class MultiMonitorSwap {
     disable() {
         this._unbindShortcut();
         this._settings = null;
+        this._timeOut = null;
     }
 }
 
