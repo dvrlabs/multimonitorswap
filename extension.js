@@ -43,8 +43,13 @@ class MultiMonitorSwap {
         } 
 
         if (!inertWindow) {
+
             focusedWindow.move_to_monitor(nextMonitor);
-            focusedWindow.activate(global.get_current_time());
+
+            setTimeout(function () {
+                focusedWindow.activate(global.get_current_time());
+            }, 66);
+
             return;
         } 
 
@@ -78,6 +83,7 @@ class MultiMonitorSwap {
         currentWindows[indexNow].activate(global.get_current_time());
 
     }
+
 
     _getWindowsAndMonitors(direction) {
         const workspace = global.workspace_manager.get_active_workspace();
