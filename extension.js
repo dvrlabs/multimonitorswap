@@ -50,7 +50,7 @@ class MultiMonitorSwap {
 
             this._timeOut = setTimeout(function () {
                 focusedWindow.activate(global.get_current_time());
-            }, 66);
+            }, 75);
 
             return;
         } 
@@ -286,7 +286,12 @@ class MultiMonitorSwap {
     disable() {
         this._unbindShortcut();
         this._settings = null;
-        this._timeOut = null;
+
+        if (this._timeOut) {
+            clearTimeout(this._timeOut);
+            this._timeOut = null;
+        }
+
     }
 }
 
