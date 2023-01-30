@@ -42,3 +42,12 @@ git clone https://github.com/dvrlabs/multimonitorswap $HOME/.local/share/gnome-s
 gnome-extensions enable multimonitorswap@dvrlabs.tv
 
 ```
+
+## Issues
+
+Invisible gjs windows can be a pain.
+
+Disable "Desktop Icons NG (ding), ding@rastersoft.com" extension, or
+if you use the feature flip through the window stack you'll hit an invisible window.
+
+
